@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Приглашение на свадьбу</title>
-    <!-- Шрифты -->
+    <title>Будущие оба Никшины — Приглашение на свадьбу</title>
+    <!-- Шрифты с мгновенным показом системного текста (display=swap) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com" rel="stylesheet">
     <!-- Подключаем наши стили -->
     <link rel="stylesheet" href="style.css">
@@ -31,7 +33,7 @@
             <p class="hero-desc">Приглашают вас разделить с ними этот день (и свадебный торт)</p>
 
             <div class="photo-meme-box" onclick="toggleMemePhoto()">
-                <img id="main-photo" src="assets/photo-normal.jpg" alt="Наша пара">
+                <img id="main-photo" src="assets/photo-normal.jpg" alt="Наша пара" loading="eager">
                 <div class="photo-badge" id="photo-badge">Нажми на нас 👀</div>
             </div>
             <p class="photo-hint" id="photo-caption">👆 Нажми на фото, чтобы увидеть, как мы выглядим на самом деле</p>
@@ -78,7 +80,7 @@
             
             <div class="card">
                 <h3>1. Регистрация брака</h3>
-                <p class="location-address">ЗАГС г. Саяногорска, ​Комсомольский микрорайон, 60</p>
+                <p class="location-address">ЗАГС г. Саяногорска, Комсомольский микрорайон, 60</p>
                 <div class="map-buttons">
                     <a href="https://yandex.ru/maps/-/CXgQaYKn" target="_blank" class="btn-outline">📍 Яндекс Карты</a>
                     <a href="https://go.2gis.com/ylyaM" target="_blank" class="btn-outline">🗺️ 2ГИС</a>
@@ -131,9 +133,8 @@
 
     </div>
 
-    <!-- Библиотека конфетти -->
-    <script src="https://jsdelivr.net"></script>
-    <!-- Подключаем наши скрипты -->
+    <!-- Подключаем только наш легкий скрипт -->
     <script src="script.js"></script>
 </body>
 </html>
+

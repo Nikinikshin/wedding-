@@ -1,21 +1,11 @@
-// 1. Открытие конверта и салют
+// 1. Мгновенное открытие конверта (без тяжелых библиотек)
 function openInvitation() {
     document.getElementById('welcome-overlay').classList.add('hidden');
-    confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 }
-    });
 }
 
-// 2. Смена фото при клике (с предзагрузкой и плавным переходом)
+// 2. Смена фото при клике с плавным переходом
 const normalPhotoPath = "assets/photo-normal.jpg";
 const memePhotoPath = "assets/photo-meme.jpg";
-
-// Заранее подгружаем смешное фото в память браузера, чтобы оно открылось мгновенно
-const preloadMeme = new Image();
-preloadMeme.src = memePhotoPath;
-
 let isMeme = false;
 
 function toggleMemePhoto() {
@@ -42,11 +32,10 @@ function toggleMemePhoto() {
     }, 200);
 }
 
-
-// 3. Таймер обратного отсчета
+// 3. Таймер обратного отсчета (Саяногорск, UTC+7)
 const weddingDate = new Date("2027-07-09T13:30:00+07:00").getTime();
 
-setInterval(function() {
+function updateTimer() {
     const now = new Date().getTime();
     const distance = weddingDate - now;
 
@@ -56,7 +45,9 @@ setInterval(function() {
         document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
     }
-}, 1000);
+}
+updateTimer();
+setInterval(updateTimer, 1000);
 
 // 4. Отправка формы в Google Таблицу
 const scriptURL = 'https://script.google.com/macros/s/AKfycbwJZmgeLdO--IEmwklmPWE5I4SN2kT48HBDtdXcm-fFr7L6yt-TWkg58mlDD_2dxViepw/exec';
@@ -78,20 +69,9 @@ async function handleFormSubmit(e) {
             body: new FormData(form)
         });
 
-        // Если дошли до этой строки — запрос успешно ушел в Google!
         alert("Ура! Ваш ответ записан. Ждем вас на празднике! 🎉");
         form.reset();
-
-        // Запускаем конфетти безопасно (даже если интернет медленный, ошибки не будет)
-        if (typeof confetti === 'function') {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        }
     } catch (error) {
-        // Сюда попадем ТОЛЬКО если реально отключен интернет
         alert("Похоже, пропал интернет. Проверьте подключение и попробуйте еще раз!");
         console.error('Ошибка сети:', error);
     } finally {
