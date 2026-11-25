@@ -1,0 +1,294 @@
+/* === ЦВЕТОВАЯ ПАЛИТРА === */
+:root {
+    --bg-color: #FAF6F0;        /* Теплый молочный фон */
+    --card-bg: #FFFFFF;         /* Белый фон карточек */
+    --accent-color: #D4A373;    /* Карамельный акцент */
+    --pastel-green: #CCD5AE;    /* Нежный шалфейный */
+    --text-main: #3D3B38;       /* Темно-серый текст */
+    --text-muted: #7A756E;      /* Приглушенный текст */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+}
+
+/* === ЭКРАН 1: ПРИВЕТСТВИЕ === */
+#welcome-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #FAF6F0 0%, #E9EDC9 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#welcome-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.envelope-card {
+    background: var(--card-bg);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    max-width: 400px;
+    width: 100%;
+    border: 1px solid rgba(212, 163, 115, 0.3);
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.welcome-title {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    background-color: #C29161;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* === ОСНОВНОЙ КОНТЕЙНЕР === */
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+section {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+/* === ГЛАВНЫЙ ЭКРАН И ФОТО === */
+.hero-names {
+    font-size: 52px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.hero-date {
+    font-size: 24px;              
+    font-weight: 600;             
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #9C6644;               
+    background-color: #EFE9DF;    
+    display: inline-block;        
+    padding: 8px 22px;            
+    border-radius: 50px;          
+    margin-bottom: 25px;
+}
+
+.hero-desc {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+.photo-meme-box {
+    max-width: 380px;
+    margin: 0 auto 15px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    cursor: pointer;
+}
+
+.photo-meme-box img {
+    width: 100%;
+    display: block;
+}
+
+.photo-hint {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* === ТАЙМЕР === */
+.timer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 450px;
+    margin: 25px auto 0;
+}
+
+.timer-item {
+    background: var(--card-bg);
+    padding: 15px 5px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.timer-num {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--accent-color);
+    display: block;
+}
+
+.timer-label {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* === КАРТОЧКИ, ТАЙМИНГ, КАРТЫ === */
+.card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 18px;
+    margin-bottom: 16px;
+    text-align: left;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+}
+
+.timeline-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.no-margin {
+    margin-bottom: 0;
+}
+
+.time-badge {
+    background: var(--pastel-green);
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.meme-note {
+    font-size: 13px;
+    color: var(--accent-color);
+    font-style: italic;
+    margin-top: 4px;
+}
+
+.location-address {
+    margin-top: 5px;
+}
+
+.map-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-outline {
+    text-decoration: none;
+    color: var(--text-main);
+    border: 1px solid var(--accent-color);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.btn-outline:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* === АНКЕТА ГОСТЯ === */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #E0DCD5;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    background: #FDFBF7;
+}
+/* === УЛУЧШЕНИЕ ДЛЯ ФОТО-МЕМА === */
+.photo-meme-box {
+    position: relative; /* Нужно, чтобы закрепить бейджик поверх фото */
+    transition: transform 0.3s ease;
+}
+
+.photo-meme-box:active {
+    transform: scale(0.97); /* Легкое нажатие при клике пальцем */
+}
+
+.photo-meme-box img {
+    transition: opacity 0.25s ease;
+}
+
+.photo-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-main);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

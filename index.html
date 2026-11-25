@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу</title>
+    <!-- Шрифты -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Подключаем наши стили -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Библиотека конфетти -->
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body>
+
+    <!-- ЭКРАН 1: ПРИВЕТСТВИЕ -->
+    <div id="welcome-overlay">
+        <div class="envelope-card">
+            <p class="subtitle">Официально (но это не точно)</p>
+            <h2 class="welcome-title">Мы женимся!</h2>
+            <p>Нажмите на кнопку ниже, чтобы открыть приглашение и узнать, где будут кормить и танцевать.</p>
+            <button class="btn-primary" onclick="openInvitation()">Открыть приглашение ✨</button>
+        </div>
+    </div>
+
+    <!-- ОСНОВНОЙ САЙТ -->
+    <div class="container">
+        
+        <!-- ГЛАВНЫЙ БЛОК -->
+        <section>
+            <p class="hero-date">09 Июля 2027</p>
+            <h1 class="hero-names">Будущие оба Никшины</h1>
+            <p class="hero-desc">Приглашают вас разделить с ними этот день (и свадебный торт)</p>
+
+            <div class="photo-meme-box" onclick="toggleMemePhoto()">
+                <img id="main-photo" src="assets/photo-normal.jpg" alt="Наша пара">
+                <div class="photo-badge" id="photo-badge">Нажми на нас 👀</div>
+            </div>
+            <p class="photo-hint" id="photo-caption">👆 Нажми на фото, чтобы увидеть, как мы выглядим на самом деле</p>
+
+            <div class="timer-grid">
+                <div class="timer-item"><span class="timer-num" id="days">00</span><span class="timer-label">дней</span></div>
+                <div class="timer-item"><span class="timer-num" id="hours">00</span><span class="timer-label">часов</span></div>
+                <div class="timer-item"><span class="timer-num" id="minutes">00</span><span class="timer-label">минут</span></div>
+                <div class="timer-item"><span class="timer-num" id="seconds">00</span><span class="timer-label">секунд</span></div>
+            </div>
+        </section>
+
+        <!-- ТАЙМИНГ ДНЯ -->
+        <section>
+            <h2 class="section-title">План действий</h2>
+            <div class="card">
+                <div class="timeline-item">
+                    <span class="time-badge">13:15</span>
+                    <div>
+                        <strong>Сбор гостей у ЗАГСа</strong>
+                        <p class="meme-note">Совет: не опаздывайте, а то жених начнет нервничать раньше времени.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time-badge">13:30</span>
+                    <div>
+                        <strong>Торжественная регистрация</strong>
+                        <p class="meme-note">Момент для красивых фото и платочков.</p>
+                    </div>
+                </div>
+                <div class="timeline-item no-margin">
+                    <span class="time-badge">17:00</span>
+                    <div>
+                        <strong>Праздничный банкет</strong>
+                        <p class="meme-note">Официальная часть окончена, начинаются танцы и вкусная еда.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ЛОКАЦИИ И КАРТЫ -->
+        <section>
+            <h2 class="section-title">Где и куда ехать</h2>
+            
+            <div class="card">
+                <h3>1. Регистрация брака</h3>
+                <p class="location-address">ЗАГС г. Саяногорска, ​Комсомольский микрорайон, 60</p>
+                <div class="map-buttons">
+                    <a href="https://yandex.ru/maps/-/CXgQaYKn" target="_blank" class="btn-outline">📍 Яндекс Карты</a>
+                    <a href="https://go.2gis.com/ylyaM" target="_blank" class="btn-outline">🗺️ 2ГИС</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>2. Банкетный зал</h3>
+                <p class="location-address">Ресторан «Славянка», Центральный микрорайон, 50</p>
+                <div class="map-buttons">
+                    <a href="https://yandex.ru/maps/-/CXgQe064" target="_blank" class="btn-outline">📍 Яндекс Карты</a>
+                    <a href="https://go.2gis.com/eHoRD" target="_blank" class="btn-outline">🗺️ 2ГИС</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- АНКЕТА ГОСТЯ -->
+        <section>
+            <h2 class="section-title">Подтвердите участие</h2>
+            <p class="hero-desc">Пожалуйста, заполните анкету заранее, чтобы мы знали, сколько порций торта заказывать.</p>
+            
+            <form class="card" id="rsvp-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>Ваше Имя и Фамилия</label>
+                    <input type="text" name="name" placeholder="Например: Данил Колбасенко" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Сможете ли вы присутствовать?</label>
+                    <select name="attendance">
+                        <option value="Да, с удовольствием!">Да, обязательно буду!</option>
+                        <option value="Буду с парой (+1)">Буду не один (+1)</option>
+                        <option value="К сожалению, не смогу">К сожалению, не смогу прийти</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Предпочтения по напиткам / еде</label>
+                    <input type="text" name="food" placeholder="Например: сухое красное, без аллергий">
+                </div>
+
+                <div class="form-group">
+                    <label>Какой трек поставить на дискотеке?</label>
+                    <input type="text" name="song" placeholder="Название исполнителя и песни (по желанию)">
+                </div>
+
+                <button type="submit" class="btn-primary full-width">Отправить ответ 💌</button>
+            </form>
+        </section>
+
+    </div>
+
+    <!-- Подключаем наши скрипты -->
+    <script src="script.js"></script>
+</body>
+</html>
